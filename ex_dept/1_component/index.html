@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- 개발버전, 도움되는 콘솔 경고를 포함. -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="./css/main.css" />
+  </head>
+  <body>
+    <div id="app">
+      <header-nav></header-nav>
+      <main-content></main-content>
+    </div>
+
+    <!-- 화면 상단에 올 템플릿 -->
+    <template id="HeaderNavTemplate">
+      <header>
+        <a href="./index.html"><img src="./img/ssafy_logo.png" /></a>
+        <h1 class="title">부서 관리</h1>
+      </header>
+    </template>
+
+    <template id="MainContentTemplate">
+      <div>
+        <ul>
+          <li><a href="./regist.html">부서 등록</a></li>
+          <li><a href="./list.html">부서 목록</a></li>
+        </ul>
+      </div>
+    </template>
+
+    <script>
+      const HeaderNav = {
+        template: "#HeaderNavTemplate",
+      };
+
+      const MainContent = {
+        template: "#MainContentTemplate",
+      };
+
+      new Vue({
+        el: "#app",
+        components: {
+          HeaderNav,
+          MainContent,
+        },
+      });
+    </script>
+  </body>
+</html>

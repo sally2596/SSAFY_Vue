@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script type="module" src="./module/util.js"></script>
+    <!— module로만튼 js를 htm로  불러올때는 type에 module을 입력해야한다.—>
+    <script type="module">
+      import { cube, PI } from "./module/util.js";
+      import cal from "./module/calc.js";
+      import { SIZE } from "./module/calc.js";
+      console.log(cube(10));
+      console.log(PI);
+      console.log(cal.add(2, 3));
+    </script>
+  </body>
+</html>

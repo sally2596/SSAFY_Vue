@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- 개발버전, 도움되는 콘솔 경고를 포함. -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- Axios CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="./css/main.css" />
+  </head>
+  <body>
+    <div id="app">
+      <header-nav></header-nav>
+      <dept-regist></dept-regist>
+    </div>
+
+    <template id="HeaderNavTemplate">
+      <header>
+        <a href="./index.html"><img src="./img/ssafy_logo.png" alt="SSAFY LOGO" /></a>
+        <h1 class="title">부서 등록</h1>
+      </header>
+    </template>
+
+    <template id="DeptRegistTemplate">
+      <form v-on:submit.prevent="registDepts">
+        <table>
+          <tbody>
+            <tr>
+              <th>부서 번호</th>
+              <td>
+                <input
+                  type="text"
+                  name="deptNo"
+                  v-model.number="deptNo"
+                  placeholder="부서번호를 입력하세요"
+                  required="required"
+                />
+              </td>
+            </tr>
+            <tr>
+              <th>부서 이름</th>
+              <td>
+                <input
+                  type="text"
+                  name="dName"
+                  v-model="dName"
+                  placeholder="부서이름을 입력하세요"
+                  required="required"
+                />
+              </td>
+            </tr>
+            <tr>
+              <th>부서 지역</th>
+              <td>
+                <input type="text" name="loc" v-model="loc" placeholder="지역을 입력하세요" />
+              </td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="2">
+                <input type="submit" value="등록" />
+                <input type="reset" value="취소" />
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </form>
+    </template>
+
+    <script>
+      const HeaderNav = {
+        template: "#HeaderNavTemplate",
+      };
+      const DeptRegist = {
+        template: "#DeptRegistTemplate",
+        data() {
+          return {
+            deptNo: "",
+            dName: "",
+            loc: "",
+          };
+        },
+        methods: {
+          registDepts() {
+            console.log(this.deptNo);
+            axios
+              .post("http://localhost:8080/myapp_rest/api/depts/", {
+                deptNo: this.deptNo,
+                dName: this.dName,
+                loc: this.loc,
+              })
+              .then((response) => console.log(response))
+              .catch((error) => alert(error));
+          },
+        },
+      };
+
+      new Vue({
+        el: "#app",
+        components: {
+          HeaderNav: HeaderNav,
+          DeptRegist: DeptRegist,
+        },
+      });
+    </script>
+  </body>
+</html>
