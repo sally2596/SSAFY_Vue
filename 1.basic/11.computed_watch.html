@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- 개발버전, 도움되는 콘솔 경고를 포함. -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <input type="number" v-model="count" /><br />
+      <span v-show="isError">에에</span>
+      <input type="number" v-model="price" /><br />
+      {{totalPrice}}
+    </div>
+  </body>
+  <script>
+    new Vue({
+      el: "#app",
+      data() {
+        return {
+          count: 1,
+          price: 10000,
+          isError: false,
+        };
+      },
+      computed: {
+        totalPrice() {
+          console.log("computed price");
+          return this.count * this.price;
+        },
+      },
+      watch: {
+        count(newCount, oldCount) {
+          console.log(`watch : ${oldCount} -> ${newCount}`);
+          if (newCount < 0) {
+            this.isError = true;
+          } else {
+            this.isError = false;
+          }
+        },
+      },
+    });
+  </script>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const hello = function () {
+        console.log("이거다 이거");
+      };
+      const hello2 = () => console.log("이거다 이거");
+
+      hello();
+      hello2();
+
+      const max = (a, b) => (a > b ? "아니" : "진짜");
+      console.log(max(10, 20));
+
+      let arr = [10, 34, 67, 20, 99];
+      arr.forEach(function (item) {
+        console.log(item);
+      });
+
+      arr.forEach((item) => console.log(item));
+      console.log(arr.filter((item) => item % 2 == 0));
+      console.log(arr.filter((item, index) => index % 2 == 0));
+    </script>
+  </body>
+</html>

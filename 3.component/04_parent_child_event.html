@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- 개발버전, 도움되는 콘솔 경고를 포함. -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <h2>부모 컨포넌트 : {{greeting}}</h2>
+      <greeting @send-greeting="receiveGreeting"></greeting>
+      <!-- @ 대신 v-on: 이라고 해도 동일한 의미-->
+    </div>
+    <template id="GreetingTemplate">
+      <div>
+        <button @click="sendGreeting">생성</button>
+        <!-- 인자 전달 필요없으면 () 생략 가능!-->
+      </div>
+    </template>
+
+    <script>
+      let Greeting = {
+        template: "#GreetingTemplate",
+        data() {
+          return {
+            messages: ["안녕하세요!", "행복한 하루 되세요!", "부자 되세요!", "취뽀하세요!"],
+          };
+        },
+        methods: {
+          sendGreeting() {
+            let index = parseInt(Math.random() * 4);
+            this.$emit("send-greeting", this.messages[index]);
+          },
+        },
+      };
+
+      new Vue({
+        el: "#app",
+        components: {
+          Greeting,
+        },
+        data() {
+          return {
+            greeting: "",
+          };
+        },
+        methods: {
+          receiveGreeting(payload) {
+            this.greeting = payload;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

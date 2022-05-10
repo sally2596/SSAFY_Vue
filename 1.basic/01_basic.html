@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- 개발버전, 도움되는 콘솔 경고를 포함. -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h1>First Vue</h1>
+    <div id="app" style="background-color: aquamarine">
+      <h2>Simple Vue</h2>
+      <h3>{{message}}</h3>
+    </div>
+    <template id="helloTemplate">
+      <h2 style="color: red">{{message}}</h2>
+    </template>
+
+    <script>
+      let data = {
+        message: "Hello SSAFY",
+      };
+
+      // 1. el 옵션 = 뷰 인스턴스가 부착될 옵션
+      // 2. el + template 옵션
+      // 3. el + render 옵션
+      new Vue({
+        el: "#app",
+        template: "#helloTemplate",
+        //template: "<h2>{{message}}</h2>",
+        data: data,
+        // render(h) {
+        //   return h("h1", "SSAFY"); // 리턴되는 요소가 템플릿을 대신함
+        // },
+      });
+    </script>
+  </body>
+</html>
